@@ -7,19 +7,20 @@ namespace TelCoColorCoder
     enum MinorColor {BLUE, ORANGE, GREEN, BROWN, SLATE};
 
     extern const char* MajorColorNames[];
-    extern const char* MinorColorNames[];
     extern int numberOfMajorColors;
+
+    extern const char* MinorColorNames[];
     extern int numberOfMinorColors;
 
     class ColorPair {
-        MajorColor majorColor;
-        MinorColor minorColor;
-
-    public:
-        ColorPair(MajorColor major, MinorColor minor);
-        MajorColor getMajor();
-        MinorColor getMinor();
-        std::string ToString();
+        private:
+            MajorColor majorColor;
+            MinorColor minorColor;
+        public:
+            ColorPair(MajorColor major, MinorColor minor);
+            MajorColor getMajor();
+            MinorColor getMinor();
+            std::string ToString();
     };
 
     ColorPair GetColorFromPairNumber(int pairNumber);
