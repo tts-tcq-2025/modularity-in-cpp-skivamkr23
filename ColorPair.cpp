@@ -1,14 +1,22 @@
-#include "ColorPair.h"
+#include "TelCoColorCoder.hpp"
 
 namespace TelCoColorCoder
 {
-    const char* MajorColorNames[] = {"White", "Red", "Black", "Yellow", "Violet"};
-    const char* MinorColorNames[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
-    int numberOfMajorColors = 5;
-    int numberOfMinorColors = 5;
+    const char* MajorColorNames[] = {
+        "White", "Red", "Black", "Yellow", "Violet"
+    };
+    int numberOfMajorColors =
+        sizeof(MajorColorNames) / sizeof(MajorColorNames[0]);
+
+    const char* MinorColorNames[] = {
+        "Blue", "Orange", "Green", "Brown", "Slate"
+    };
+    int numberOfMinorColors =
+        sizeof(MinorColorNames) / sizeof(MinorColorNames[0]);
 
     ColorPair::ColorPair(MajorColor major, MinorColor minor):
-        majorColor(major), minorColor(minor) {}
+        majorColor(major), minorColor(minor)
+    {}
 
     MajorColor ColorPair::getMajor() {
         return majorColor;
@@ -16,16 +24,22 @@ namespace TelCoColorCoder
     MinorColor ColorPair::getMinor() {
         return minorColor;
     }
-
     std::string ColorPair::ToString() {
-        return std::string(MajorColorNames[majorColor]) + " " + MinorColorNames[minorColor];
+        std::string colorPairStr = MajorColorNames[majorColor];
+        colorPairStr += " ";
+        colorPairStr += MinorColorNames[minorColor];
+        return colorPairStr;
     }
+
     ColorPair GetColorFromPairNumber(int pairNumber) {
         int zeroBasedPairNumber = pairNumber - 1;
-        MajorColor major = (MajorColor)(zeroBasedPairNumber / numberOfMinorColors);
-        MinorColor minor = (MinorColor)(zeroBasedPairNumber % numberOfMinorColors);
-        return ColorPair(major, minor);
+        MajorColor majorColor =
+            (MajorColor)(zeroBasedPairNumber / numberOfMinorColors);
+        MinorColor minorColor =
+            (MinorColor)(zeroBasedPairNumber % numberOfMinorColors);
+        return ColorPair(majorColor, minorColor);
     }
+
     int GetPairNumberFromColor(MajorColor major, MinorColor minor) {
         return major * numberOfMinorColors + minor + 1;
     }
