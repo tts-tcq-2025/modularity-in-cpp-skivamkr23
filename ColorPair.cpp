@@ -1,21 +1,24 @@
 #include "ColorPair.h"
-namespace TelCoColorCoder 
+#include "ColorUtils.h"
+
+namespace TelCoColorCoder
 {
+
     ColorPair::ColorPair(MajorColor major, MinorColor minor)
         : majorColor(major), minorColor(minor) {}
 
-    MajorColor ColorPair::getMajorColor() const 
-    {
+    MajorColor ColorPair::getMajor() {
         return majorColor;
     }
 
-    MinorColor ColorPair::getMinorColor() const 
-    {
+    MinorColor ColorPair::getMinor() {
         return minorColor;
     }
 
-    std::string ColorPair::toString() const 
-    {
-        return std::string(MajorColorNames[(int)majorColor]) + " " + MinorColorNames[(int)minorColor];
+    std::string ColorPair::ToString() {
+        std::string colorPairStr = MajorColorNames[majorColor];
+        colorPairStr += " ";
+        colorPairStr += MinorColorNames[minorColor];
+        return colorPairStr;
     }
 }

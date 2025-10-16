@@ -1,18 +1,22 @@
-#pragma once
+#ifndef COLORPAIR_H
+#define COLORPAIR_H
 #include <string>
-#include "ColorMap.h"
 
-namespace TelCoColorCoder 
+namespace TelCoColorCoder
 {
-    class ColorPair 
-{
+    enum MajorColor {WHITE, RED, BLACK, YELLOW, VIOLET};
+    enum MinorColor {BLUE, ORANGE, GREEN, BROWN, SLATE};
+
+    class ColorPair {
     private:
         MajorColor majorColor;
         MinorColor minorColor;
     public:
         ColorPair(MajorColor major, MinorColor minor);
-        MajorColor getMajorColor() const;
-        MinorColor getMinorColor() const;
-        std::string toString() const;
-};
+        MajorColor getMajor();
+        MinorColor getMinor();
+        std::string ToString();
+    };
 }
+
+#endif
